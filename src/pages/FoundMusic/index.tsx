@@ -1,7 +1,28 @@
 import React from 'react';
+import { Button, Form } from 'antd'
+import PhoneTime from '@/components/PhoneTime';
 
-function FoundMusic() {
-  return <div>FoundMusic</div>;
+const FoundMusic: React.FC = () => {
+  const [form] = Form.useForm()
+
+  const submit = () => {
+    form.validateFields().then(res => {
+      console.log(res)
+    })
+  }
+      
+  return (
+    <>
+      FoundMusic
+
+      <Form form={form}>
+        <Form.Item name="a">
+          <PhoneTime/>
+        </Form.Item>
+      </Form>
+      <Button onClick={submit}>submit</Button>
+    </>
+  );
 }
 
 export default FoundMusic;

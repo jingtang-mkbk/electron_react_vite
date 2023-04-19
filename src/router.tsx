@@ -5,7 +5,7 @@ import Follow from './pages/Follow';
 import Live from './pages/Live';
 import PrivateFM from './pages/PrivateFM';
 
-const router = [
+const router: RouterTypes = [
   {
     path: '/',
     element: <FoundMusic />,
