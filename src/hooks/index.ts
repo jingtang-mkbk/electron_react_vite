@@ -1,0 +1,61 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { DependencyList } from 'react';
+
+const depsAreSame = (oldDeps: DependencyList, deps: DependencyList):boolean => {
+  if(oldDeps === deps) return true
+  
+  for(let i = 0; i < oldDeps.length; i++) {
+    // 判断两个值是否是同一个值
+    if(!Object.is(oldDeps[i], deps[i])) return false
+  }
+
+  return true
+}
+
+// useCreation 
+export const useCreation = <T>(fn:() => T, deps: DependencyList)=> {
+
+  const { current } = useRef({ 
+    deps,
+    obj:  undefined as undefined | T ,
+    initialized: false
+  })
+
+  if(current.initialized === false || !depsAreSame(current.deps, deps)) {
+    current.deps = deps;
+    current.obj = fn();
+    current.initialized = true;
+  }
+
+  return current.obj as T
+} 
+
+// 挂载
+export const useMount = (fn: () => void) => {
+
+  useEffect(() => {
+    fn?.();
+  }, []);
+};
+
+// 卸载
+export const useUnmount = (fn: () => void) => {
+
+  const ref = useRef(fn);
+  ref.current = fn;
+
+  useEffect(
+    () => () => {
+      ref.current()
+    },
+    [],
+  );
+};
+
+// 强制刷新
+export const useUpdate = () => {
+  const [, setState] = useState({});
+
+  return useCallback(() => setState({}), []);
+};
+
