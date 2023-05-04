@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'antd'
 import PhoneTime from '@/components/PhoneTime';
+import Test from '@/components/Test';
 
 const FoundMusic: React.FC = () => {
   const [form] = Form.useForm()
@@ -17,7 +18,10 @@ const FoundMusic: React.FC = () => {
 
       <Form form={form}>
         <Form.Item name="a">
-          <PhoneTime/>
+          <PhoneTime />
+        </Form.Item>
+        <Form.Item name="b">
+          <Test />
         </Form.Item>
       </Form>
       <Button onClick={submit}>submit</Button>
