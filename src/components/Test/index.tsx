@@ -18,7 +18,7 @@ const Test: React.FC<any> = (props) => {
 
   useEffect(() => {
     getValue();
-  }, [value,data]);
+  }, [data]);
 
   return(
     <div className={styles.test}>
