@@ -1,7 +1,8 @@
 import React from 'react';
 
-function Follow() {
-  return <div>Follow</div>;
+const Follow: React.FC = () => {
+  return (<>111
+  </>);
 }
 
 export default Follow;
